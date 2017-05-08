@@ -9,7 +9,7 @@ class GraphController < ApplicationController
     @offenses = Entry.all.pluck(:offense).uniq
     @selected_offense = params[:offense]
 
-    if params[:dv].empty?
+    if params[:dv].nil? || params[:dv].empty?
       @selected_dv = "%"
     else
       @selected_dv = to_boolean(params[:dv])

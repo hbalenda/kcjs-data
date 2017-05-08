@@ -33,13 +33,13 @@
   </div>
 <% end %>
 <h2>
-  <% if (!@selected_race.empty? || !@selected_gender.empty?) %>
+  <% if (!@selected_race.nil? || !@selected_gender.nil?) %>
     <%= "#{@selected_gender} #{@selected_race}" %>
   <% else %>
     All
   <% end %>
   juveniles booked into detention
-  <% if !@selected_offense.empty?%>
+  <% if !@selected_offense.nil?%>
     <%= "for #{@selected_offense.downcase}"%>
   <% end %>
   <% if @selected_dv == true %>
