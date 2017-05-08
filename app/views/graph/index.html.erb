@@ -1,0 +1,33 @@
+<h1>KCJS DATA</h1>
+<%= form_tag("/graph/index", method: "get") do %>
+<%= select_tag ("gender"),
+  options_for_select(@genders, @selected_gender), {:include_blank => "All"} %>
+<%= select_tag ("race"),
+  options_for_select(@races, @selected_race), {:include_blank => "All"} %>
+<%= select_tag ("offense"),
+  options_for_select(@offenses, @selected_offense), {:include_blank => "All"} %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<h1>Table</h1>
+<table>
+  <p>Total: <%= @count %></p>
+  <table>
+    <tr>
+      <th>Gender</th>
+      <th>Race/Ethnicity</th>
+      <th>Offense</th>
+      <th>Offense Details</th>
+      <th>Domestic Violence</th>
+    </tr>
+  <% @entries.each do |entry| %>
+    <tr>
+      <td><%= entry.gender %></td>
+      <td><%= entry.race %></td>
+      <td><%= entry.offense %></td>
+      <td><%= entry.details %></td>
+      <td><%= entry.dv %></td>
+    </tr>
+  <% end %>
+  </table>
+</table>

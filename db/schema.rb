@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170507190602) do
     t.string "details"
     t.boolean "dv"
     t.string "race"
+    t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

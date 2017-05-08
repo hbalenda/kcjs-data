@@ -6,6 +6,7 @@ class CreateEntries < ActiveRecord::Migration[5.1]
       t.string :details
       t.boolean :dv
       t.string :race
+      t.integer :year
 
       t.timestamps
     end
