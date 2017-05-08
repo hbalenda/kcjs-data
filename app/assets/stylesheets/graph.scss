@@ -1,3 +1,24 @@
-// Place all the styles related to the graph controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+div {
+  padding: 0 10px 10px 0;
+  display:inline-block;
+}
+
+body, html {
+  font-family: 'Open Sans', sans-serif;
+}
+
+td, th {
+  width: 10rem;
+  height: 2rem;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+th {
+  background: #d2e6de;
+  border-color: white;
+}
+body {
+  padding: 1rem;
+}

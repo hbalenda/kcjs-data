@@ -1,24 +1,63 @@
-<h1>KCJS DATA</h1>
+<h1>KCJS</h1>
 <%= form_tag("/graph/index", method: "get") do %>
-<%= select_tag ("gender"),
-  options_for_select(@genders, @selected_gender), {:include_blank => "All"} %>
-<%= select_tag ("race"),
-  options_for_select(@races, @selected_race), {:include_blank => "All"} %>
-<%= select_tag ("offense"),
-  options_for_select(@offenses, @selected_offense), {:include_blank => "All"} %>
+  <div>
+  <%= label_tag(:gender, "Gender") %>
+  <%= select_tag (:gender),
+    options_for_select(@genders, @selected_gender), {:include_blank => "All"} %>
+  </div>
+  <div>
+    <%= label_tag(:race, "Race/Ethnicity") %>
+  <%= select_tag (:race),
+    options_for_select(@races, @selected_race), {:include_blank => "All"} %>
+  </div>
+  <div>
+  <%= label_tag(:offense, "Offense") %>
+  <%= select_tag (:offense),
+    options_for_select(@offenses, @selected_offense), {:include_blank => "All"} %>
+  </div>
+  <div>
+  <%= label_tag(:dv, "Domestic Violence") %>
+  <%= select_tag (:dv),
+    options_for_select([true], @selected_dv), {:include_blank => "All"} %>
+  </div>
+  <div>
+  <%= label_tag(:start_year, "From") %>
+  <%= select_tag (:start_year), options_for_select(@years, @selected_start_year) %>
+  </div>
+  <div>
+  <%= label_tag(:end_year, "To") %>
+  <%= select_tag (:end_year), options_for_select(@years, @selected_end_year) %>
+  </div>
+  <div>
   <%= submit_tag("Search") %>
+  </div>
 <% end %>
-
-<h1>Table</h1>
+<h2>
+  <% if (!@selected_race.empty? || !@selected_gender.empty?) %>
+    <%= "#{@selected_gender} #{@selected_race}" %>
+  <% else %>
+    All
+  <% end %>
+  juveniles booked into detention
+  <% if !@selected_offense.empty?%>
+    <%= "for #{@selected_offense.downcase}"%>
+  <% end %>
+  <% if @selected_dv == true %>
+    <%= !@selected_offense.empty? ? " - " : "for" %>
+    <%= "domestic violence" %>
+  <% end %>
+  <%= "from #{@selected_start_year} - #{@selected_end_year}" %>
+</h2>
 <table>
-  <p>Total: <%= @count %></p>
+  <p><%= "#{@count} selected/#{@total} total (#{@selected_start_year} - #{@selected_end_year})" %></p>
   <table>
     <tr>
       <th>Gender</th>
       <th>Race/Ethnicity</th>
       <th>Offense</th>
-      <th>Offense Details</th>
+      <th>Details</th>
       <th>Domestic Violence</th>
+      <th>Year</th>
     </tr>
   <% @entries.each do |entry| %>
     <tr>
@@ -27,6 +66,7 @@
       <td><%= entry.offense %></td>
       <td><%= entry.details %></td>
       <td><%= entry.dv %></td>
+      <td><%= entry.year %></td>
     </tr>
   <% end %>
   </table>
